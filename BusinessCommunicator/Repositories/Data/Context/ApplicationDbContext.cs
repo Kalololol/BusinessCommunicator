@@ -10,7 +10,6 @@ namespace BusinessCommunicator.Repositories
         }
         // definiowanie dbsetów (tworzenie bazy danych)
         public DbSet<Message> Message { get; set; }
-        public DbSet<Team> Team { get; set; }
         public DbSet<User> User { get; set; }
 
         //metoda do migracji 

@@ -29,34 +29,14 @@ namespace BusinessCommunicator.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Message");
-                });
-
-            modelBuilder.Entity("BusinessCommunicator.Models.Team", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Team");
                 });
 
             modelBuilder.Entity("BusinessCommunicator.Models.User", b =>
@@ -75,45 +55,18 @@ namespace BusinessCommunicator.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("User");
                 });
 
             modelBuilder.Entity("BusinessCommunicator.Models.Message", b =>
                 {
-                    b.HasOne("BusinessCommunicator.Models.Team", "Team")
-                        .WithMany("Messages")
-                        .HasForeignKey("TeamId");
-
                     b.HasOne("BusinessCommunicator.Models.User", "User")
                         .WithMany("Messages")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Team");
-
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BusinessCommunicator.Models.User", b =>
-                {
-                    b.HasOne("BusinessCommunicator.Models.Team", "Team")
-                        .WithMany("Users")
-                        .HasForeignKey("TeamId");
-
-                    b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("BusinessCommunicator.Models.Team", b =>
-                {
-                    b.Navigation("Messages");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("BusinessCommunicator.Models.User", b =>
