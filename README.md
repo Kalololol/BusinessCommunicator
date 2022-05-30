@@ -4,7 +4,7 @@ Projekt oparty na frameworku .Net Core MVC.
 Biblioteki:
 - Entity Framework
 - SignalR
-- DbContext
+
 
 Projekt wstępnie przy wykorzysta bazę danych SQL Server z perspektywą wdorżenia rozwiązania chmurowego Azure 
 
