@@ -8,7 +8,6 @@ namespace BusinessCommunicator.Controllers
 {
     public class MessageController : Controller
     {
-        private readonly IRepository<User> _usersRepository;
         private readonly IRepository<Message> _messageRepository;
         
 
@@ -40,8 +39,9 @@ namespace BusinessCommunicator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Message message)
         {
-            
+            message.Active = true;
             _messageRepository.Add(message);
+            _messageRepository.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
@@ -56,7 +56,9 @@ namespace BusinessCommunicator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Message message)
         {
+            message.Active = true;
             _messageRepository.Update(message);
+            _messageRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));
           
         }
@@ -64,22 +66,18 @@ namespace BusinessCommunicator.Controllers
         // GET: MessageController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(_messageRepository.GetById(id));
         }
 
         // POST: MessageController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Message message)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _messageRepository.Delete(message);
+            _messageRepository.SaveChanges();
+            return RedirectToAction(nameof(Index));
+          
         }
     }
 }

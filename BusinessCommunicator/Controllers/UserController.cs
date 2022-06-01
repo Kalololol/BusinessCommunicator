@@ -11,7 +11,8 @@ namespace BusinessCommunicator.Controllers
     public class UserController : Controller
     {
         private readonly IRepository<User> _usersRepository;
-        private readonly IRepository<Message> _messageRepository;
+        
+
 
         public UserController(IRepository<User> userRepository)
         {
@@ -45,6 +46,7 @@ namespace BusinessCommunicator.Controllers
         {
             user.Active = true;
             _usersRepository.Add(user);
+            _usersRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));
          
         }
@@ -61,6 +63,7 @@ namespace BusinessCommunicator.Controllers
         public ActionResult Edit(User user)
         {
             _usersRepository.Update(user);
+            _usersRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));
            
         }
@@ -68,22 +71,18 @@ namespace BusinessCommunicator.Controllers
         // GET: UserController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(_usersRepository.GetById(id));
         }
 
         // POST: UserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, User user)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _usersRepository.Delete(user);
+            _usersRepository.SaveChanges();
+            return RedirectToAction(nameof(Index));
+          
         }
     }
 }
