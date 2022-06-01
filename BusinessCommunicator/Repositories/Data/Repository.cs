@@ -31,7 +31,7 @@ namespace BusinessCommunicator.Repositories
         }
         public IQueryable<TEntity> GetAll() 
         { 
-            return entities.Where(x => x.Active); 
+            return entities.Where(x => !x.Active); 
         }
         public TEntity GetById(int id) 
         { 

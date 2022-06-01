@@ -39,7 +39,7 @@ namespace BusinessCommunicator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Message message)
         {
-            message.Active = true;
+            
             _messageRepository.Add(message);
             _messageRepository.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -56,7 +56,7 @@ namespace BusinessCommunicator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Message message)
         {
-            message.Active = true;
+            
             _messageRepository.Update(message);
             _messageRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));

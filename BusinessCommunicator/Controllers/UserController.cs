@@ -44,7 +44,6 @@ namespace BusinessCommunicator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(User user)
         {
-            user.Active = true;
             _usersRepository.Add(user);
             _usersRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));
