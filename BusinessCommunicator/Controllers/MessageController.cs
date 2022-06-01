@@ -1,62 +1,64 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BusinessCommunicator.Models;
+using BusinessCommunicator.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BusinessCommunicator.Controllers
 {
     public class MessageController : Controller
     {
+        private readonly IRepository<User> _usersRepository;
+        private readonly IRepository<Message> _messageRepository;
+        
+
+        public MessageController(IRepository<Message> messageRepository)
+        {
+            _messageRepository = messageRepository;
+        }
+
         // GET: MessageController
         public ActionResult Index()
         {
-            return View();
+            return View(_messageRepository.GetAll());
         }
 
         // GET: MessageController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_messageRepository.GetById(id));
         }
 
         // GET: MessageController/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Message());
         }
 
         // POST: MessageController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Message message)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            
+            _messageRepository.Add(message);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: MessageController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_messageRepository.GetById(id));
         }
 
         // POST: MessageController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Message message)
         {
-            try
-            {
+            _messageRepository.Update(message);
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+          
         }
 
         // GET: MessageController/Delete/5

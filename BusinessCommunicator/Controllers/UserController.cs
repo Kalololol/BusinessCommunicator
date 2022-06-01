@@ -2,67 +2,67 @@
 using BusinessCommunicator.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessCommunicator.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IRepository<User> users;
+        private readonly IRepository<User> _usersRepository;
+        private readonly IRepository<Message> _messageRepository;
+
+        public UserController(IRepository<User> userRepository)
+        {
+            _usersRepository = userRepository;
+        }
 
 
 
         // GET: UserController
         public ActionResult Index()
         {
-            return View();
+            return View(_usersRepository.GetAll());
         }
 
         // GET: UserController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_usersRepository.GetById(id));
         }
 
         // GET: UserController/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new User());
         }
 
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(User user)
         {
-            try
-            {
+            user.Active = true;
+            _usersRepository.Add(user);
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+         
         }
 
         // GET: UserController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_usersRepository.GetById(id));
         }
 
         // POST: UserController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(User user)
         {
-            try
-            {
+            _usersRepository.Update(user);
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+           
         }
 
         // GET: UserController/Delete/5

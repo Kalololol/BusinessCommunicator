@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace BusinessCommunicator.Repositories
 {
-    public class Repository<TEntity> where TEntity : EntityBase
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : EntityBase
     {
         private readonly ApplicationDbContext _context;
         private DbSet<TEntity> entities;
@@ -31,7 +31,7 @@ namespace BusinessCommunicator.Repositories
         }
         public IQueryable<TEntity> GetAll() 
         { 
-            return entities; 
+            return entities.Where(x => x.Active); 
         }
         public TEntity GetById(int id) 
         { 
