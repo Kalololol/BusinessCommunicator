@@ -15,11 +15,13 @@ Obiekty systemu:
   - Name
   - Email
   - Password
+  - Active
 
 - Message:
   - Id
   - Description
   - UserId
+  - Active
  
  
  Inteface:
