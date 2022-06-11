@@ -1,12 +1,6 @@
-# BusinessCommunicator - aplikacja webowa, portal z ogłoszeniami użytkowników oraz czat. 
+# BusinessCommunicator - aplikacja webowa, portal dla użytkowników oraz listą ogłoszeń.
 
 Projekt oparty na frameworku .Net Core MVC. 
-Biblioteki:
-- Entity Framework
-- SignalR
-
-
-Projekt wstępnie przy wykorzysta bazę danych SQL Server z perspektywą wdorżenia rozwiązania chmurowego Azure 
 
 
 Obiekty systemu:
