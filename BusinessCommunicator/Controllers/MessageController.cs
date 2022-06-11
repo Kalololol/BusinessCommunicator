@@ -64,7 +64,7 @@ namespace BusinessCommunicator.Controllers
         }
 
         // GET: MessageController/Delete/5
-        public ActionResult Delete(int id)
+/*        public ActionResult Delete(int id)
         {
             return View(_messageRepository.GetById(id));
         }
@@ -78,6 +78,6 @@ namespace BusinessCommunicator.Controllers
             _messageRepository.SaveChanges();
             return RedirectToAction(nameof(Index));
           
-        }
+        }*/
     }
 }
