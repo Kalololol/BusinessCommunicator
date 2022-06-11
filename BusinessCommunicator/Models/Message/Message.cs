@@ -5,7 +5,7 @@ namespace BusinessCommunicator.Models
 {
     public class Message : EntityBase
     {
-        [DisplayName("Treść ogłoszenia")]
+        [DisplayName("Ogłoszenia")]
         [Required(ErrorMessage = "Pole opis nie może być puste")]
         [MaxLength(1000)]
         public string Description { get; set; }
