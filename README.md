@@ -1,6 +1,6 @@
 # BusinessCommunicator - aplikacja webowa, portal dla użytkowników oraz listą ogłoszeń.
 
-Projekt oparty na frameworku .Net Core MVC. 
+Projekt oparty na frameworku .Net Core MVC z połączeniem do bazy danych SQL Server.
 
 
 Obiekty systemu:
@@ -18,8 +18,6 @@ Obiekty systemu:
   - Active
  
  
- Inteface:
- okno główne prezentujące okno z ogłoszeniami użytkowników oraz okno czatu
- karta dodatkowa będzie obsługiwać ogłoszenia danego użytkownika zgodnie z CRUD
- karta dodatkowa będzie odpowiedzialna za ustawienia użytkownika
- 
+Praca zaliczeniowa, wykonana przez:
+- Karol Binkowski 11651 
+- Sylwia Rosiczka 11312
