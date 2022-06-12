@@ -1,4 +1,4 @@
-# BusinessCommunicator - aplikacja webowa, portal dla użytkowników oraz listą ogłoszeń.
+# BusinessCommunicator - aplikacja webowa, portal dla użytkowników z listą ogłoszeń.
 
 Projekt oparty na frameworku .Net Core MVC z połączeniem do bazy danych SQL Server.
 
