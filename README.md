@@ -21,6 +21,3 @@ Obiekty systemu:
   - Active
  
  
-Praca zaliczeniowa, wykonana przez:
-- Karol Binkowski 11651 
-- Sylwia Rosiczka 11312
